@@ -1,40 +1,24 @@
-import React, { useState } from 'react';
-import { Form } from './components/Form/Form';
+import React from 'react';
 import { Footer } from './components/layout/footer/footer';
-import { Header } from './components/layout/header/header';
-import { Main } from './components/layout/Main/Main';
-import { NoteList } from './components/NotesList/NoteList';
-import { Note } from './custom-types/notes-type';
-import { NotesControlType  } from './custom-types/notes-control-type';
+import { Header } from './components/layout/Header/Header';
 import { Route, Routes } from 'react-router-dom';
 import { NewNotesPage } from './pages/NewNotesPage/NewNotesPage';
-
-let InitialState:NotesControlType = {
-  notesList:[],
-  currentId:1
-};
+import { NotesProvider } from './context/notes/NotesProvide';
+import { NotesListPage } from './pages/NotesListPage/NotesListPage';
+import { ScreenContainer } from './global';
 
 const App: React.FC = ( ) => {
-  const [notesControl, setNotesControl ] = useState (InitialState);
- 
-  const getDataFromForm = ( note:Note ):void => { 
-      setNotesControl( prevState => {
-        return {
-          ...prevState,
-          notesList:[...prevState.notesList, note],
-          currentId:prevState.currentId+=1 
-        }});
-  };
-
 
   return (
-        <React.Fragment>
+        <NotesProvider>
+          <ScreenContainer/>
           <Header/>
           <Routes>
               <Route path='/create-note' element={<NewNotesPage/>}/>
+              <Route path='/notes' element ={<NotesListPage/>}/>
           </Routes>
           <Footer/>
-        </React.Fragment>
+        </NotesProvider>
         );
   };
 

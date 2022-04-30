@@ -1,20 +1,18 @@
 import React, { useContext } from "react";
-import { Form } from "../../components/Form/Form";
 import { Main } from "../../components/layout/Main/Main";
+import { NoteList } from "../../components/NotesList/NoteList";
 import { NotesContext } from "../../context/notes/notes-context";
 
 
-const NewNotesPage: React.FC = props => {
+const NotesListPage: React.FC = props => {
 
     const notesContext = useContext(NotesContext)
 
     return (
             <Main>
-                <Form 
-                      addNotes={notesContext.addNotes} 
-                      currentId={notesContext.currentId}/>
+                <NoteList allNotes={notesContext.notesList}/>
             </Main>
     )
 };
 
-export { NewNotesPage };
+export { NotesListPage };

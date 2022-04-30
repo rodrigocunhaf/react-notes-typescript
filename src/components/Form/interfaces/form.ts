@@ -1,6 +1,6 @@
 export interface FormInterface {
 
-    getDataFromForm:Function;
+    addNotes:Function;
 
     currentId:number;
 };
