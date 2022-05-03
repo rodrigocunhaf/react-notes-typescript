@@ -67,17 +67,22 @@ const FormContainer = styled.div`
 
 const Form: React.FC <FormInterface> = ( props ) => {
 
-    const author = useRef <HTMLInputElement | null> (null);
-    const note = useRef <HTMLTextAreaElement | null> (null);
+    const author = useRef <HTMLInputElement> (null)
+    const note = useRef <HTMLTextAreaElement> (null);
 
     const onSubmitHandler = ( event:React.FormEvent) =>{
         event.preventDefault();
         const newNote: Note = {
-            author:author.current?.value!,
+            author:author.current!.value!,
             id:props.currentId,
-            text:note.current?.value!
-        }
+            text:note.current!.value
+        };
+        
         props.addNotes(newNote);
+
+        author.current!.value = '';
+        note.current!.value = '';
+
     };
 
     return (

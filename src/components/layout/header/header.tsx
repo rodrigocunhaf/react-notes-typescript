@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { ScreenBox } from '../../ScreenBox/ScreenBox';
 import styled from 'styled-components';
+import headerData from './headerData.json';
 
 const HeaderContainer = styled.header`
     display:flex;
@@ -28,8 +29,11 @@ const Header:React.FC = () => {
     return (
         <ScreenBox>
             <HeaderContainer>
-                <NavLink  className={ linkProp => linkProp.isActive ? 'isActive' : ''}  to={'create-note'}> Add notes</NavLink>
-                <NavLink  className={ linkProp => linkProp.isActive ? 'isActive' : ''} to={'/notes'}>Notes</NavLink>  
+                {
+                    headerData.map ( item => {
+                        return <NavLink   className={ linkProp => linkProp.isActive ? 'isActive' : ''}  to={item.to}>{item.buttonName}</NavLink>
+                    })
+                }
             </HeaderContainer>
         </ScreenBox>
     );

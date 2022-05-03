@@ -18,9 +18,7 @@ const NotesProvider: React.FC <{ children:React.ReactNode }> = props => {
         });
 
     };
-
-
-    console.log(notesControler)
+    
     return (
             <NotesContext.Provider value={
                                             {

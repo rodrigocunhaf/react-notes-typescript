@@ -6,6 +6,8 @@ import { NewNotesPage } from './pages/NewNotesPage/NewNotesPage';
 import { NotesProvider } from './context/notes/NotesProvide';
 import { NotesListPage } from './pages/NotesListPage/NotesListPage';
 import { ScreenContainer } from './global';
+import { Welcome } from './pages/WelcomePage/WelcomePage';
+import { NotFound } from './pages/NotFoundPage/NotFoundPage';
 
 const App: React.FC = ( ) => {
 
@@ -14,8 +16,10 @@ const App: React.FC = ( ) => {
           <ScreenContainer/>
           <Header/>
           <Routes>
+              <Route path='/' element={<Welcome/>}/>
               <Route path='/create-note' element={<NewNotesPage/>}/>
               <Route path='/notes' element ={<NotesListPage/>}/>
+              <Route path='*'  element ={<NotFound/>}/>
           </Routes>
           <Footer/>
         </NotesProvider>

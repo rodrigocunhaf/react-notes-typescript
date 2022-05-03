@@ -1,0 +1,20 @@
+[
+    {
+        "buttonName":"HOME",
+        "to":"/"
+    },
+
+    {
+        "buttonName":"ADD NEW NOTE",
+        "to":"/create-note"
+    },
+    {
+        "buttonName":"ALL NOTES",
+        "to":"/notes"
+    },
+
+    {
+        "buttonName":"ABOUT",
+        "to":"/ABOUT"
+    }
+]
