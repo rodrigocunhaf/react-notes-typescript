@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { FilterInterface } from './interfaces/filter';
 
 const FilterContainer = styled.div`
     width:100%;
@@ -78,7 +79,7 @@ const FilterContainer = styled.div`
     }
 `
 
-const Filter: React.FC = props => {
+const Filter: React.FC <FilterInterface> = props => {
 
     const [isVisible, setIsVisible ] = useState <boolean> (false);
     const [currentValue , setCurrentValue] = useState <number> (8);
@@ -89,15 +90,16 @@ const Filter: React.FC = props => {
 
     const changeCurrentValue = ( event:React.MouseEvent <HTMLButtonElement>) => {
         setCurrentValue(+event.currentTarget.value);
+        props.updateItensByPage(+event.currentTarget.value);
     };
 
     const onBlurHandler = (event:React.FocusEvent <HTMLElement>) => {
         if (!event.relatedTarget){
-            return setIsVisible(false)
+            return setIsVisible(false);
         };
     };
 
-    const setVisible = isVisible ? 'unset' : 'none'
+    const setVisible = isVisible ? 'unset' : 'none';
 
     return (
         <FilterContainer >

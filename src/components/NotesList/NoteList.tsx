@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { NoteListInterface } from "./interfaces/note-list";
 import { NoteListItem } from "./NoteListItem";
 import styled from 'styled-components';
 import dataComponent from './data/note-list-item-data.json';
 import { Filter } from "../Filter/Filter";
+import { Pagination } from "../Pagination/Pagination";
 
 const NoteListContainer = styled.div`
         display:flex;
@@ -43,16 +44,23 @@ const NoteListContainer = styled.div`
 `
 
 const NoteList: React.FC <NoteListInterface> = ( props ) => {
+
+    const [itemsByPage, setItemsByPage] = useState <number> (8);
+
+    const updateItensByPage = ( quantyItems:number) => {
+        setItemsByPage(quantyItems);
+    };
     
     return ( 
         <NoteListContainer>
             <div className="box-itemList">
-                <Filter/>
-                <ul className="itemsList">{ props.allNotes.map( item =>{
+                <Filter updateItensByPage={updateItensByPage}/>
+                <ul className="itemsList">{ props.allNotes.slice(0,itemsByPage).map( item =>{
                     let randomColor = Math.round(Math.random()*10);
                     return <NoteListItem key={item.id} author={item.author} note={item.text} bgColor={dataComponent[randomColor]} />
                     })}
                 </ul>
+                <Pagination allNotes={props.allNotes}/>
             </div>
         </NoteListContainer>
     );
