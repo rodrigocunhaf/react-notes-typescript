@@ -45,8 +45,7 @@ const NoteListItem: React.FC <NoteItemType>= props => {
 
     return (
         <NoteContainer bgColor={props.bgColor}>
-            <img src={iconNote} alt='anotations'/>
-            <p>{props.author}</p>
+            <div>pipoca</div>
         </NoteContainer>
     );
 };
